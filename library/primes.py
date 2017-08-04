@@ -40,8 +40,9 @@ class PrimeCalculator:
 if __name__ == "__main__":
     testbench_primes = [2,3,5,7,11,13,17,19,23,29,31]
     primes1 = PrimeCalculator()
+    test_pause = 5
     print("Starting sequential test")
-    for num in range (0,5):
+    for num in range (0,test_pause):
         test_prime = testbench_primes[num]
         res_prime = next(primes1)
         print("Got %d expected %d"%(res_prime,test_prime),end='')
@@ -63,6 +64,18 @@ if __name__ == "__main__":
     print("Starting second iterator test")
     primes2 = PrimeCalculator()
     for idx,res_prime in enumerate(primes2):
+        if idx >= len(testbench_primes):
+            break
+        test_prime = testbench_primes[idx]
+        print("Got %d expected %d"%(res_prime,test_prime),end='')
+        if res_prime == test_prime:
+            print(" ... Passed")
+        else:
+            print(" ... Failed!")
+            quit(-1)
+    print("Starting test to continue first iterator")
+    for iteration,res_prime in enumerate(primes1):
+        idx = iteration + test_pause
         if idx >= len(testbench_primes):
             break
         test_prime = testbench_primes[idx]
