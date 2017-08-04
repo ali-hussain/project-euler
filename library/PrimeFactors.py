@@ -1,9 +1,9 @@
 #!/usr/local/bin/python3
 
 import math
-from primes import PrimeCalculator
+from PrimeCalculator import PrimeCalculator
 
-class Primefactors:
+class PrimeFactors:
     def get_prime_factors(num):
         prime_factors = {}
         primes = PrimeCalculator()
@@ -19,6 +19,6 @@ class Primefactors:
 
 if __name__ == "__main__":
     for num in range(1,20):
-        result = Primefactors.get_prime_factors(num)
+        result = PrimeFactors.get_prime_factors(num)
         print("Prime factors for %d are:" % num)
         print(result)
