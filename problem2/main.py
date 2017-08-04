@@ -1,4 +1,4 @@
-#!/usr/local/bin/python3
+#!/usr/bin/env python3
 max_num = 4_000_000
 fibonacci_numbers = [1,1]
 
