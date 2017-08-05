@@ -1,2 +1,1 @@
-from PrimeCalculator import PrimeCalculator
-from PrimeFactors import PrimeFactors 
+__all__ = ['PrimeCalculator','PrimeFactors']
