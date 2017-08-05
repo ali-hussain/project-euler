@@ -17,6 +17,12 @@ class PrimeFactors:
                 num_divided = num_divided/prime
             # End when >sqrt, self and 1 are not prime factors
         return prime_factors
+    def get_number(prime_factors):
+        result = 1
+        for prime in prime_factors:
+            for num in range(0,prime_factors[prime]:
+                result = result*prime
+        return result
 
 if __name__ == "__main__":
     for num in range(1,20):
