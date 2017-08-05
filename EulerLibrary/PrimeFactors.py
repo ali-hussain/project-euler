@@ -1,16 +1,16 @@
 #!/usr/bin/env python3
 
 import math
-from PrimeCalculator import PrimeCalculator
+from .PrimeCalculator import PrimeCalculator
 
 class PrimeFactors:
     def get_prime_factors(num):
         prime_factors = {}
         primes = PrimeCalculator()
+        num_divided = num
         for prime in primes:
-            if prime > num/2:
+            if prime > num_divided:
                 break
-            num_divided = num
             while num_divided % prime == 0:
                 prime_factors[prime] = prime_factors.get(prime,0)+1
                 num_divided = num_divided/prime
