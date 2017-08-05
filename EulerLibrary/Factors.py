@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 
 import math
-from .PrimeCalculator import PrimeCalculator
+from .Primes import PrimeCalculator
 
 class PrimeFactors:
     def get_prime_factors(num):
         prime_factors = {}
-        primes = PrimeCalculator()
+        primes = PrimeCalculator.UnboundedIterator()
         num_divided = num
         for prime in primes:
             # This deifnition does include the number itself if the number is prime

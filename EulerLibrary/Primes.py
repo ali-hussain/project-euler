@@ -4,10 +4,8 @@ import math
 class PrimeCalculator:
     known_primes = [2] # Initialize with first prime, because of how calc_more_primes is written
 
-    def __init__(self):
-        self.count = 0
-
-    def is_prime(num):
+    @staticmethod
+    def _is_prime(num):
         for prime in PrimeCalculator.known_primes:
             if num%prime == 0:
                 return False
@@ -15,27 +13,76 @@ class PrimeCalculator:
                 break
         return True
 
-    def calc_more_primes():
+    @staticmethod
+    def _calc_more_primes():
         num = PrimeCalculator.known_primes[-1] + 1
-        while not PrimeCalculator.is_prime(num):
+        while not PrimeCalculator._is_prime(num):
             num +=1
         PrimeCalculator.known_primes.append(num)
 
+    @staticmethod
     def get_prime(num):
         # Precalculate all required primes
         while(len(PrimeCalculator.known_primes) <= num):
-            PrimeCalculator.calc_more_primes()
+            PrimeCalculator._calc_more_primes()
         # return correct prime
         return PrimeCalculator.known_primes[num]
 
-    def __iter__(self):
-        return self
+    class UnboundedIterator:
+        def __init__(self):
+            self._count = 0
+        def __iter__(self):
+            return self
+        def __next__(self):
+            result = PrimeCalculator.get_prime(self._count)
+            self._count +=1
+            return result
 
-    def __next__(self):
-        result = PrimeCalculator.get_prime(self.count)
-        self.count +=1
-        return result
+    class NumPrimesIterator:
+        def __init__(self, first, second=None):
+            if second is None:
+                start = 0
+                end = first
+            else:
+                start = first
+                end = second
+            if(start > end):
+                raise ValueError
+            self._start = start
+            self._current = start
+            self._end = end
+        def __iter__(self):
+            return self
+        def __next__(self):
+            if self._current == self._end:
+                raise StopIteration
+            result = PrimeCalculator.get_prime(self._current)
+            self._current +=1
+            return result
 
+    # Iterate over primes in a range floor to ceil, ceil is not included
+    class RangePrimesIterator:
+        def __init__(self, first, second = None):
+            if second is None:
+                floor = 0
+                ceil = first
+            else:
+                floor = first
+                ceil = second
+            if(floor > ceil):
+                raise ValueError
+            self._unbound_iter  = Primecalculator.UnboundedIterator()
+            self._floor = cloor
+            self._ceil = ceil
+        def __iter__(self):
+            return self
+        def __next__(self):
+            result = self._unbound_iter.__next__()
+            while result < floor:
+                result = self._unbound_iter.__next__()
+            if result >= ceil:
+                raise StopIteration
+            return result
 
 if __name__ == "__main__":
     testbench_primes = [2,3,5,7,11,13,17,19,23,29,31]

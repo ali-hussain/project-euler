@@ -1,1 +1,1 @@
-__all__ = ['PrimeCalculator','Factors']
+__all__ = ['Primes','Factors']
