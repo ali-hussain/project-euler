@@ -71,16 +71,16 @@ class PrimeCalculator:
                 ceil = second
             if(floor > ceil):
                 raise ValueError
-            self._unbound_iter  = Primecalculator.UnboundedIterator()
-            self._floor = cloor
+            self._unbound_iter  = PrimeCalculator.UnboundedIterator()
+            self._floor = floor
             self._ceil = ceil
         def __iter__(self):
             return self
         def __next__(self):
             result = self._unbound_iter.__next__()
-            while result < floor:
+            while result < self._floor:
                 result = self._unbound_iter.__next__()
-            if result >= ceil:
+            if result >= self._ceil:
                 raise StopIteration
             return result
 
