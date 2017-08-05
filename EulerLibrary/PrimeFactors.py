@@ -9,6 +9,7 @@ class PrimeFactors:
         primes = PrimeCalculator()
         num_divided = num
         for prime in primes:
+            # This deifnition does include the number itself if the number is prime
             if prime > num_divided:
                 break
             while num_divided % prime == 0:
