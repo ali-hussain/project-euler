@@ -1,8 +1,12 @@
 #!/usr/bin/env python3
+# Standard libraries to import for unit tests
 import sys
-sys.path.append('..')
-
 import unittest
+try:
+    sys.path.index('..')
+except ValueError:
+    sys.path.append('..')
+
 from EulerLibrary.Factors import PrimeFactors
 
 class TestPrimeFactors(unittest.TestCase):
