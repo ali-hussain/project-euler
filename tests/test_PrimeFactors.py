@@ -3,7 +3,7 @@ import sys
 sys.path.append('..')
 
 import unittest
-from EulerLibrary.PrimeFactors import PrimeFactors
+from EulerLibrary.Factors import PrimeFactors
 
 class TestPrimeFactors(unittest.TestCase):
     preset_factors = {1: {},
