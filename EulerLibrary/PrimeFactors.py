@@ -23,19 +23,3 @@ class PrimeFactors:
             for num in range(0,prime_factors[prime]):
                 result = result*prime
         return result
-
-if __name__ == "__main__":
-    factors = []
-    for num in range(1,20):
-        result = PrimeFactors.get_prime_factors(num)
-        factors.append(result)
-        print("Prime factors for %d are:" % num)
-        print(result)
-    for num in range(1,20):
-        result = PrimeFactors.get_number(factors[num-1])
-        print("When recreating number expected %d got %d"%(num, result),end='')
-        if num == result:
-            print(" ... Passed")
-        else:
-            print(" ... Failed!")
-            quit(-1)

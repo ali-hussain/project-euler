@@ -1,0 +1,42 @@
+#!/usr/bin/env python3
+import sys
+sys.path.append('..')
+
+import unittest
+from EulerLibrary.PrimeFactors import PrimeFactors
+
+class TestPrimeFactors(unittest.TestCase):
+    preset_factors = {1: {},
+                      2: {2: 1},
+                      3: {3: 1},
+                      4: {2: 2},
+                      5: {5: 1},
+                      6: {2: 1, 3: 1},
+                      7: {7: 1},
+                      8: {2: 3},
+                      9: {3: 2},
+                      10: {2: 1, 5: 1},
+                      11: {11: 1},
+                      12: {2: 2, 3: 1},
+                      13: {13: 1},
+                      14: {2: 1, 7: 1},
+                      15: {3: 1, 5: 1},
+                      16: {2: 4},
+                      17: {17: 1},
+                      18: {2: 1, 3: 2},
+                      19: {19: 1},
+                      20: {2: 2, 5: 1}}
+
+    def test_known_primes(self):
+        for num in range(1,21):
+            result = PrimeFactors.get_prime_factors(num)
+            self.assertEqual(result,TestPrimeFactors.preset_factors[num])
+
+    def test_factor_recreate(self):
+        for num in range(1,200):
+            prime_factors = PrimeFactors.get_prime_factors(num)
+            result = PrimeFactors.get_number(prime_factors)
+            self.assertEqual(result,num)
+
+if __name__ == '__main__':
+    unittest.main()
