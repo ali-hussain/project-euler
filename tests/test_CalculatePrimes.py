@@ -21,16 +21,17 @@ class TestCalculatePrimes(unittest.TestCase):
     def test_KnownPrimes(self):
         # Test against list of known primes <100k
         # Load test_primes
-        test_primes = []
         file_path = os.path.join(os.path.dirname('__file__'),'resources','primes-to-100k.txt')
-        with open(file_path,'r') as primes_file:
-            prime_str = primes_file.readline().replace('\n','')
-            test_primes.append(int(prime_str))
+        primes_file = open(file_path,'r')
+        test_primes = [int(x.replace('\n','')) for x in primes_file.readlines()]
         # Generate primes
         prime_iterator = PrimeCalculator.RangePrimesIterator(100_000)
         for index,result in enumerate(prime_iterator):
+            self.assertLess(index,len(test_primes),msg='Did not stop generating primes after %d'%index)
             self.assertEqual(result,test_primes[index],
                         msg='Failure at index %d' % index)
-        selfassertEqual(index == len(test_primes),msg='Some primes are missing')
+        self.assertEqual(index,len(test_primes)-1,msg='Some primes are missing')
+
 if __name__ == '__main__':
+
     unittest.main()
