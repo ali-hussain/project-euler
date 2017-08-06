@@ -27,4 +27,43 @@ def printGrid(grid):
 if __name__ == '__main__':
     PARSED_ARGS = Utilities.initialize(arguments)
     grid = readGrid(PARSED_ARGS.input)
-    printGrid(grid)
+    # To view the grid use:
+    # printGrid(grid)
+    # Get the result
+    max_product = 0
+    number = PARSED_ARGS.number
+    if number <=0:
+        raise ValueError
+    grid_height = len(grid)
+    grid_width = len(grid[0])
+    # Traverse rows
+    row_product_grid = [[[] for x in range(grid_width-number+1)] for y in range(grid_height) ]
+    for row in range(grid_height):
+        for column in range(grid_width-number+1):
+            product = 1
+            for offset in range(number):
+                product = product * grid[row][column+offset]
+            row_product_grid[row][column] = product
+            if product > max_product:
+                max_product = product
+    # Traverse columns
+    column_product_grid = [[[] for x in range(grid_width)] for y in range(grid_height-number+1) ]
+    for column in range(grid_width):
+        for row in range(grid_height-number+1):
+            product = 1
+            for offset in range(number):
+                product = product * grid[row+offset][column]
+            column_product_grid[row][column] = product
+            if product > max_product:
+                max_product = product
+    # Traverse diagonals
+    diagonal_product_grid = [[[] for x in range(grid_width-number+1)] for y in range(grid_height-number+1) ]
+    for row in range(grid_height-number+1):
+        for column in range(grid_width-number+1):
+            product = 1
+            for offset in range(number):
+                product = product * grid[row+offset][column+offset]
+            diagonal_product_grid[row][column] = product
+            if product > max_product:
+                max_product = product
+    print(max_product)
