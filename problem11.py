@@ -57,13 +57,22 @@ if __name__ == '__main__':
             if product > max_product:
                 max_product = product
     # Traverse diagonals
-    diagonal_product_grid = [[[] for x in range(grid_width-number+1)] for y in range(grid_height-number+1) ]
+    diagonal1_product_grid = [[[] for x in range(grid_width-number+1)] for y in range(grid_height-number+1) ]
     for row in range(grid_height-number+1):
         for column in range(grid_width-number+1):
             product = 1
             for offset in range(number):
                 product = product * grid[row+offset][column+offset]
-            diagonal_product_grid[row][column] = product
+            diagonal1_product_grid[row][column] = product
+            if product > max_product:
+                max_product = product
+    diagonal2_product_grid = [[[] for x in range(grid_width-number+1)] for y in range(grid_height-number+1) ]
+    for row in range(number-1,grid_height):
+        for column in range(grid_width-number+1):
+            product = 1
+            for offset in range(number):
+                product = product * grid[row-offset][column+offset]
+            diagonal2_product_grid[row-number+1][column] = product
             if product > max_product:
                 max_product = product
     print(max_product)
