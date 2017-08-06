@@ -6,7 +6,7 @@ import argparse
 
 if __name__ == '__main__':
     def arguments(parser):
-        parser.add_argument('--input','-i',type=str,default='Problem8/inputstring.txt',help='input file')
+        parser.add_argument('--input','-i',type=str,default='resources/problem8-inputstring.txt',help='input file')
         parser.add_argument('--number','-n',type=int,default='13',help='Number to multiply')
 
     PARSED_ARGS = Utilities.initialize(arguments)
