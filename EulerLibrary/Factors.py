@@ -2,6 +2,7 @@
 
 import math
 import itertools
+import functools
 from .Primes import PrimeCalculator
 
 def get_prime_factors(num):
@@ -27,16 +28,22 @@ def get_number_from_prime_factors(prime_factors):
     return result
 def get_all_factors(num):
     '''Get all factors for a number in a list. Guarantee uniqueness'''
-    prime_factors = PrimeFactors.get_prime_factors(num)
+    prime_factors = get_prime_factors(num)
     rolled_out_prime_factors = []
     for key in prime_factors.keys():
         rolled_out_prime_factors.extend([key]*prime_factors[key])
-    combination_sprime_factors = itertools.combinations(rolled_out_prime_factors)
-    all_factors  = [1,num]
-    for combination in permuted_prime_factors:
-        product = reduce(lambda x,y: x*y, combination)
-        try:
-            all_factors.index(product)
-        except ValueError:
-            all_factors.append(product)
-    return all_factors
+    # Initialize with 1
+    all_factors  = [1]
+    if num != 1:
+        # Insert self, if not 1
+        all_factors.append(num)
+    # Insert combos of prime factors
+    for length in range(1,len(rolled_out_prime_factors)):
+        combinations_prime_factors = itertools.combinations(rolled_out_prime_factors,length)
+        for combination in combinations_prime_factors:
+            product = functools.reduce(lambda x,y: x*y, combination)
+            try:
+                all_factors.index(product)
+            except ValueError:
+                all_factors.append(product)
+    return sorted(all_factors)
