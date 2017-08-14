@@ -2,31 +2,31 @@
 import math
 
 class PrimeCalculator:
-    known_primes = [2] # Initialize with first prime, because of how calc_more_primes is written
+    _known_primes = [2] # Initialize with first prime, because of how calc_more_primes is written
 
-    @staticmethod
-    def _is_prime(num):
-        for prime in PrimeCalculator.known_primes:
+    @classmethod
+    def _divisible_by_known_prime(cls, num):
+        for prime in cls._known_primes:
             if num%prime == 0:
                 return False
             if math.sqrt(num) < prime:
                 break
         return True
 
-    @staticmethod
-    def _calc_more_primes():
-        num = PrimeCalculator.known_primes[-1] + 1
-        while not PrimeCalculator._is_prime(num):
+    @classmethod
+    def _calc_more_primes(cls):
+        num = cls._known_primes[-1] + 1
+        while not cls._divisible_by_known_prime(num):
             num +=1
-        PrimeCalculator.known_primes.append(num)
+        cls._known_primes.append(num)
 
-    @staticmethod
-    def get_prime(num):
+    @classmethod
+    def get_prime(cls,num):
         # Precalculate all required primes
-        while(len(PrimeCalculator.known_primes) <= num):
-            PrimeCalculator._calc_more_primes()
+        while(len(cls._known_primes) <= num):
+            cls._calc_more_primes()
         # return correct prime
-        return PrimeCalculator.known_primes[num]
+        return cls._known_primes[num]
 
     class UnboundedIterator:
         def __init__(self):
