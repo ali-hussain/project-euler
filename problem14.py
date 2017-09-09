@@ -39,3 +39,9 @@ def generate_sequence(number):
 
 if __name__ == '__main__':
     PARSED_ARGS = Utilities.initialize(arguments)
+    max_sequence = []
+    for number in range(1,PARSED_ARGS.limit):
+        collatz_seq = generate_sequence(number)
+        if len(collatz_seq) > len(max_sequence): max_sequence = collatz_seq
+    print ("Found longest Collatz sequence with length %d"%len(max_sequence))
+    print max_sequence
