@@ -23,7 +23,8 @@ from EulerLibrary import Utilities
 from EulerLibrary.Factors import get_all_factors
 
 def arguments(parser):
-    parser.add_argument('--limit','-n',type=int,default=1_000_000,help='Largest starting number for sequence')
+    parser.add_argument('--limit','-n',type=int,default=999_999,help='Largest starting number for sequence')
+    parser.add_argument('--printsequence','-s',type=bool,default=False,help='Print the sequence')
 
 def generate_sequence(number):
     ''' Genereate a Collatz sequence for a number'''
@@ -44,8 +45,8 @@ if __name__ == '__main__':
     for number in range(1,PARSED_ARGS.limit+1):
         collatz_seq = generate_sequence(number)
         if len(collatz_seq) > len(max_sequence): max_sequence = collatz_seq
-        if number % 1000 == 0:
+        if number % 100000 == 0:
             print("Reached %d with largest yet sequence starting with %d with length %d" %
                     (number, max_sequence[0],len(max_sequence)))
-    print ("Found longest Collatz sequence with length %d"%len(max_sequence))
-    print(max_sequence)
+    print ("Found longest Collatz sequence for %d with length %d"%(max_sequence[0],len(max_sequence)))
+    if PARSED_ARGS.printsequence: print(max_sequence)
