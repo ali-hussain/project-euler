@@ -24,5 +24,18 @@ from EulerLibrary.Factors import get_all_factors
 
 def arguments(parser):
     parser.add_argument('--limit','-l',type=int,default=1_000_000,help='Largest starting number for sequence')
+
+def generate_sequence(number):
+    ''' Genereate a Collatz sequence for a number'''
+    result = [number]
+    while number != 1: # Assuming we won't create new math and discover cycles
+        if number%2 == 0:
+            # even
+            number = number / 2
+        else:
+            # odd
+            number = 3 * number + 1
+        result.append(number)
+
 if __name__ == '__main__':
     PARSED_ARGS = Utilities.initialize(arguments)
