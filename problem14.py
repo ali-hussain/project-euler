@@ -16,3 +16,13 @@ NOTE: Once the chain starts the terms are allowed to go above one million.
 
 '''
 
+import logging
+import argparse
+import os
+from EulerLibrary import Utilities
+from EulerLibrary.Factors import get_all_factors
+
+def arguments(parser):
+    parser.add_argument('--limit','-l',type=int,default=1_000_000,help='Largest starting number for sequence')
+if __name__ == '__main__':
+    PARSED_ARGS = Utilities.initialize(arguments)
