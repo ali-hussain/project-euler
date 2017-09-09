@@ -23,6 +23,10 @@ def get_numbers(filename):
 if __name__ == '__main__':
     PARSED_ARGS = Utilities.initialize(arguments)
     numbers = get_numbers(PARSED_ARGS.input)
+    # The numbers are small enough that we can just sum it
+    # But calculating the complete sum is unnecessary, we can sum from the left hand side
+    # In which case we would need to only calculate the sum till we reach the first digit after the 10th
+    # that is not a nine
     result = sum(numbers)
     string_result = str(result)
     print(string_result[0:PARSED_ARGS.digits])
