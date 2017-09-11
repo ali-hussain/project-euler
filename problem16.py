@@ -14,3 +14,9 @@ def arguments(parser):
 
 if __name__ == '__main__':
     PARSED_ARGS = Utilities.initialize(arguments)
+    result = 1
+    for index in range(0,PARSED_ARGS.exponent):
+        result = result * 2
+    string_result = str(result)
+    result_digits = [int(x) for x in string_result]
+    print("2^%d has digits with sum %d"%(PARSED_ARGS.exponent,sum(result_digits)))
