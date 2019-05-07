@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 
+
+
 '''
 A Pythagorean triplet is a set of three natural numbers, a < b < c, for which,
 
